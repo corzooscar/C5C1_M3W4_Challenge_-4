@@ -257,6 +257,10 @@ This halves the wait time compared to sequential `await` calls.
   "fechaCreacion": "2025-06-03"
 }
 ```
+---
+## 🦎 Flowchart
+
+<img width="8192" height="8055" alt="User_Role-Based_Session_Flow-2026-06-04-010105" src="https://github.com/user-attachments/assets/03f6ad9d-9a56-4430-bf92-facabbc4cbac" />
 
 ---
 
