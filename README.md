@@ -1,126 +1,278 @@
-# Ticket Management System (TMS)
+<div align="center">
 
-A Single Page Application (SPA) built with Vanilla JavaScript for managing technical support tickets.
+<img src="https://img.shields.io/badge/TMS-Ticket%20Management%20System-DC2626?style=for-the-badge&logo=ticket&logoColor=white" alt="TMS Banner"/>
 
-## Description
+# 🎫 Ticket Management System
 
-TMS is an internal tool for a tech support company that allows technicians to log incidents and requests, administrators to manage and assign tickets, and clients to track their support requests — all without page reloads.
+**A role-based technical support ticket manager built as a Single Page Application.**  
+No page reloads. No frameworks. Just clean, modular Vanilla JavaScript.
 
-## Technologies Used
+<br/>
 
-- **JavaScript (ES Modules)** — SPA logic, routing, and DOM manipulation
-- **Vite** — Dev server and build tool
-- **Bootstrap 5** — UI components and responsive layout
-- **Bootstrap Icons** — Icon library
-- **Axios** — HTTP client for API calls
-- **JSON Server** — Simulated REST API (two instances)
-- **Sass (SCSS)** — Custom styles on top of Bootstrap
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![Axios](https://img.shields.io/badge/Axios-1.x-5A29E4?style=flat-square&logo=axios&logoColor=white)](https://axios-http.com/)
+[![JSON Server](https://img.shields.io/badge/JSON%20Server-0.17-2ECC71?style=flat-square&logo=json&logoColor=white)](https://github.com/typicode/json-server)
+[![Sass](https://img.shields.io/badge/Sass-SCSS-CC6699?style=flat-square&logo=sass&logoColor=white)](https://sass-lang.com/)
 
-## Team Members
+<br/>
 
-- (Add your names here)
+[Getting Started](#-getting-started) · [Project Structure](#-project-structure) · [Roles](#-roles--permissions) · [Architecture](#-architecture) · [API Reference](#-api-reference)
 
-## Installation
+</div>
+
+---
+
+## 📋 Overview
+
+TMS is an internal web application for a technical support company. It allows teams to manage incidents, requests, and support cases through a structured ticketing workflow — with strict role-based access control enforced on both the UI and the routing layer.
+
+| Role | Can do |
+|------|--------|
+| 🔴 **Admin** | Full CRUD on all tickets, assign technicians, manage statuses |
+| 🔵 **Technician** | Create & manage their own assigned tickets |
+| 🟢 **Client** | Submit requests, track their own tickets |
+
+---
+
+## ✨ Features
+
+- **SPA Navigation** — zero page reloads using the History API
+- **Role-based dashboards** — each role sees a completely different interface
+- **Simulated middleware** — route guards that protect pages before rendering
+- **Session persistence** — survives browser refresh via `localStorage`
+- **Auto-logout** — session expires after **5 minutes of inactivity**
+- **Parallel data fetching** — `Promise.all()` to load resources simultaneously
+- **Delegated events** — single listener per list, no re-binding on re-render
+- **Two independent APIs** — auth server and data server on separate ports
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v18 or higher
+- npm v9 or higher
+
+### Installation
 
 ```bash
+# Clone or unzip the project
+cd C5C1_M3_W4_lastChallenge
+
+# Install dependencies
 npm install
 ```
 
-## How to Run
+### Running the Application
 
-You need **three terminal windows**:
+You need **3 terminal windows** running simultaneously:
 
-### 1. Authentication Server (port 3001)
 ```bash
-npx json-server --watch auth-db.json --port 3001
+# Terminal 1 — Authentication API (port 3001)
+npm run auth-server
 ```
 
-### 2. Data Server (port 3002)
 ```bash
-npx json-server --watch data-db.json --port 3002
+# Terminal 2 — Tickets & Data API (port 3002)
+npm run data-server
 ```
 
-### 3. Vite Dev Server (port 8080)
 ```bash
+# Terminal 3 — Frontend Dev Server (port 8080)
 npm start
 ```
 
-Then open: **http://localhost:8080**
+Then open your browser at → **[http://localhost:8080](http://localhost:8080)**
 
-### Default Credentials
+> ⚠️ **Both JSON Server instances must be running before you open the app**, otherwise login and data fetching will fail.
 
-| Username | Password | Role          |
-|----------|----------|---------------|
-| admin1   | admin123 | Administrator |
-| tec1     | tec123   | Technician    |
-| tec2     | tec456   | Technician    |
+---
 
-New clients can self-register via the "Register" link on the login page.
+## 🔑 Default Credentials
 
-## Project Structure
+| Username | Password | Role | Access |
+|----------|----------|------|--------|
+| `admin1` | `admin123` | Administrator | Full system access |
+| `tec1` | `tec123` | Technician | Own tickets only |
+| `tec2` | `tec456` | Technician | Own tickets only |
+
+> 🆕 New **client** accounts can be created through the **Register** link on the login screen.
+
+---
+
+## 📁 Project Structure
 
 ```
-├── index.html               # SPA entry point
-├── auth-db.json             # Auth JSON Server (users, roles)
-├── data-db.json             # Data JSON Server (tickets)
-├── package.json
-├── vite.config.js
-└── assets/
-    ├── scss/
-    │   └── styles.scss      # Bootstrap + custom styles
-    └── js/
-        ├── app.js           # Main entry: init, events, SPA navigation
-        ├── router.js        # Route table + auth/role guards + navigateTo
-        ├── components/
-        │   ├── navbar.js    # Session-aware navbar component
-        │   └── ticketCard.js# Reusable ticket card with role-based buttons
-        ├── middleware/
-        │   └── authMiddleware.js  # guardRoute, isAuthenticated, hasRole
-        ├── pages/
-        │   ├── loginView.js     # Login + Register forms and logic
-        │   ├── adminView.js     # Admin: full ticket CRUD, stats, filters
-        │   ├── techView.js      # Tech: own tickets, create, status change
-        │   └── clientView.js    # Client: own tickets, create, limited edit
-        ├── services/
-        │   ├── httpClient.js    # Two Axios instances (authClient, dataClient)
-        │   └── jsonserver.js    # All API calls (auth + tickets)
-        ├── utils/
-        │   ├── session.js       # localStorage session + inactivity timeout
-        │   └── helpers.js       # loadHTML, formatDate, badges, etc.
-        └── views/
-            ├── login.html       # Login form HTML partial
-            ├── register.html    # Register form HTML partial
-            ├── admin.html       # Admin dashboard HTML + modal
-            ├── tech.html        # Tech dashboard HTML + modal
-            └── client.html      # Client dashboard HTML + modal
+C5C1_M3_W4_lastChallenge/
+│
+├── 📄 index.html               → Single HTML shell of the entire SPA
+├── 📄 package.json             → Scripts and dependencies
+├── 📄 vite.config.js           → Dev server config (port 8080)
+├── 🗄️  auth-db.json             → JSON Server: users & roles  (port 3001)
+├── 🗄️  data-db.json             → JSON Server: tickets        (port 3002)
+│
+└── 📂 assets/
+    ├── 📂 scss/
+    │   └── styles.scss         → Bootstrap + custom component styles
+    │
+    └── 📂 js/
+        ├── app.js              → Entry point: init, global events, SPA nav
+        ├── router.js           → Route table, auth guards, navigateTo()
+        │
+        ├── 📂 components/      → Reusable UI building blocks
+        │   ├── navbar.js       → Session-aware top navigation bar
+        │   └── ticketCard.js   → Ticket card with role-conditional buttons
+        │
+        ├── 📂 middleware/      → Simulated route protection layer
+        │   └── authMiddleware.js → guardRoute(), isAuthenticated(), hasRole()
+        │
+        ├── 📂 services/        → All HTTP communication lives here
+        │   ├── httpClient.js   → Two configured Axios instances
+        │   └── jsonserver.js   → All API call functions (auth + tickets)
+        │
+        ├── 📂 utils/           → Pure helper functions
+        │   ├── session.js      → localStorage session + inactivity timer
+        │   └── helpers.js      → loadHTML(), formatDate(), today(), badges
+        │
+        ├── 📂 pages/           → View controllers (one per role)
+        │   ├── loginView.js    → Login + self-registration flow
+        │   ├── adminView.js    → Admin: CRUD, tech cards, stats, filters
+        │   ├── techView.js     → Technician: own tickets + status control
+        │   └── clientView.js   → Client: submit & track own requests
+        │
+        └── 📂 views/           → HTML partials loaded dynamically
+            ├── login.html
+            ├── register.html
+            ├── admin.html      → Includes Bootstrap modal
+            ├── tech.html       → Includes Bootstrap modal
+            └── client.html     → Includes Bootstrap modal
 ```
 
-## Role Behavior
+---
 
-### Administrator (`admin`)
-- Views **all** tickets in the system
-- Can **create, edit, and delete** any ticket
-- Can **assign any technician** to a ticket
-- Can set any status (`pendiente`, `en proceso`, `asignado`, `solucionado`)
-- "Asignado" status only available when a technician is selected
+## 👥 Roles & Permissions
 
-### Technician (`tecnico`)
-- Sees only **their own tickets** (where they are the assigned technician)
-- Can **create tickets** (automatically assigned to themselves)
-- Can **edit** their own tickets and change the status
-- Cannot assign other technicians
+### 🔴 Administrator
+- View, create, edit and **delete** any ticket in the system
+- Assign any registered technician to a ticket
+- Change ticket status freely (`pendiente` → `en proceso` → `asignado` → `solucionado`)
+- The `asignado` status is only selectable when a technician has been assigned
+- See the **Available Technicians** panel with live ticket count per technician
 
-### Client (`cliente`)
-- Sees only **their own tickets**
-- Can **create tickets** (no technician selection — admin assigns one later)
-- Can **edit** tickets only while **no technician is assigned** (or if status is `solucionado`)
-- Cannot assign technicians or change status
+### 🔵 Technician
+- Create tickets — **automatically assigned to themselves**
+- View and edit only their own assigned tickets
+- Change the status of their own tickets
+- Cannot assign other technicians or view tickets they don't own
 
-## Technical Decisions
+### 🟢 Client
+- Submit new support requests (no technician selection — admin handles that)
+- Track status of their own tickets
+- Edit a ticket **only if no technician has been assigned yet**, or if status is `solucionado`
+- Cannot change ticket status or assign technicians
 
-- **Two JSON Server instances**: auth logic (port 3001) and business data (port 3002) are separated to mirror a real microservice architecture.
-- **ES Modules**: all files use `import/export` for clear dependency management and modularity.
-- **Simulated middleware**: `authMiddleware.js` provides `guardRoute()` which every page calls at render time — mimicking backend route protection.
-- **Inactivity timeout**: implemented in `session.js` using `setTimeout`; resets on mouse, keyboard, scroll and touch events. After 5 minutes of inactivity the session is cleared automatically.
-- **Delegated event listeners**: ticket list containers use a single `addEventListener('click')` with `closest('[data-action]')` to avoid re-binding on every re-render.
-- **`loadHTML()`**: fetches HTML partials from the server at runtime, keeping markup separate from JavaScript logic (following the idealChallenge pattern).
+---
+
+## 🏗️ Architecture
+
+```
+Browser
+  └── index.html (shell)
+        └── app.js (entry point)
+              ├── router.js          ← decides what to render based on URL + session
+              │     └── pages/*      ← controllers that load HTML and fetch data
+              │           ├── middleware/authMiddleware.js  ← guards every page
+              │           ├── services/jsonserver.js        ← all API calls
+              │           │     └── services/httpClient.js  ← axios instances
+              │           ├── components/ticketCard.js      ← reusable UI
+              │           └── utils/helpers.js + session.js ← shared utilities
+              └── components/navbar.js  ← always in sync with session state
+```
+
+### Key Design Decisions
+
+**Two separate JSON Server instances**  
+Auth logic (port 3001) and business data (port 3002) are intentionally separated — mirroring a real microservice architecture where authentication and domain data are decoupled.
+
+**ES Modules throughout**  
+Every file uses `import`/`export`. Dependencies are explicit and traceable, avoiding global scope pollution.
+
+**Simulated backend middleware**  
+`authMiddleware.js` exports `guardRoute(role)` which every page calls *before* rendering anything. This mirrors how Express.js or similar backends protect routes, making the pattern transferable.
+
+**Inactivity auto-logout**  
+Implemented with a `setTimeout` that resets on `click`, `keydown`, `mousemove`, `scroll`, and `touchstart` events. After 5 minutes of no activity, the session is cleared and the user is redirected to login.
+
+**Delegated event listeners**  
+The ticket list containers use a *single* `addEventListener('click')` with `event.target.closest('[data-action]')` — instead of attaching a listener to every button. This avoids memory leaks and stale handlers when the list re-renders.
+
+**`Promise.all()` for parallel fetching**  
+The admin dashboard loads tickets and technicians simultaneously:
+```javascript
+[allTickets, technicians] = await Promise.all([getTickets(), getTechnicians()]);
+```
+This halves the wait time compared to sequential `await` calls.
+
+---
+
+## 🌐 API Reference
+
+### Auth Server — `http://localhost:3001`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/users?username=x&password=y` | Validate login credentials |
+| `GET` | `/users?rol=tecnico` | Get all technicians |
+| `GET` | `/users` | Get all users |
+| `POST` | `/users` | Register new client |
+| `GET` | `/roles` | Get all roles |
+
+### Data Server — `http://localhost:3002`
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/tickets` | Get all tickets (admin) |
+| `GET` | `/tickets?clienteId=x` | Get tickets by client |
+| `GET` | `/tickets?tecnicoId=x` | Get tickets by technician |
+| `POST` | `/tickets` | Create a new ticket |
+| `PATCH` | `/tickets/:id` | Partially update a ticket |
+| `DELETE` | `/tickets/:id` | Delete a ticket (admin only) |
+
+### Ticket Object Schema
+
+```json
+{
+  "id": 1,
+  "nombre": "Server down on main cluster",
+  "tipo": "incidente",
+  "descripcion": "The main production server is unreachable since 09:00.",
+  "estado": "asignado",
+  "tecnicoId": 2,
+  "tecnicoNombre": "Juan Técnico",
+  "clienteId": 1,
+  "clienteNombre": "Administrador Principal",
+  "fechaCreacion": "2025-06-03"
+}
+```
+
+---
+
+## 👨‍💻 Team
+
+| Name | Role |
+|------|------|
+| *Habith* | Developer |
+| *Oczo* | Developer |
+| *Ronny* | Developer |
+| *Silvio* | Developer |
+
+---
+
+<div align="center">
+
+Built for **RIWI** · Module 3 · Week 4 Final Challenge
+
+</div>
