@@ -1,0 +1,28 @@
+{
+  "tickets": [
+    {
+      "nombre": "Fallo en red",
+      "tipo": "incidente",
+      "descripcion": "No hay plata",
+      "estado": "asignado",
+      "tecnicoId": 3,
+      "tecnicoNombre": "María Técnica",
+      "clienteId": 2,
+      "clienteNombre": "Juan Técnico",
+      "fechaCreacion": "2026-06-03",
+      "id": 3
+    },
+    {
+      "nombre": "Error en mi aplicación",
+      "tipo": "soporte",
+      "descripcion": "No me deja acceder con mi usuario :/",
+      "tecnicoId": 2,
+      "tecnicoNombre": "Juan Técnico",
+      "clienteId": 4,
+      "clienteNombre": "Juan Carlos",
+      "estado": "solucionado",
+      "fechaCreacion": "2026-06-04",
+      "id": 4
+    }
+  ]
+}

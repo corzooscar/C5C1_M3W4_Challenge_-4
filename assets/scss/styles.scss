@@ -1,0 +1,306 @@
+@import "bootstrap/scss/bootstrap";
+
+// ============================================
+// VARIABLES
+// ============================================
+$bg-app:     #f0f2f5;
+$radius-sm:  8px;
+$radius-md:  12px;
+$radius-lg:  16px;
+
+// ============================================
+// BASE
+// ============================================
+body {
+    background-color: $bg-app;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+#navbar .navbar {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+// ============================================
+// LOGIN
+// ============================================
+.login-card {
+    max-width: 900px;
+    margin: 5vh auto;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+.login-image-panel {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 3rem;
+    color: white;
+
+    .brand-icon { font-size: 5rem; color: #e94560; margin-bottom: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+    .login-card { margin: 1rem; }
+}
+
+// ============================================
+// STAT PILLS
+// ============================================
+.stat-pill {
+    background: white;
+    border-radius: $radius-sm;
+    border-left: 4px solid #dee2e6;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.stat-pill-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.stat-pill-label {
+    font-size: 0.72rem;
+    color: #6c757d;
+    line-height: 1.2;
+}
+
+// ============================================
+// TECH PANEL
+// ============================================
+.tech-panel {
+    background: #eaf6ff;
+    border: 2px solid #b8dfff;
+    border-radius: $radius-md;
+    padding: 1rem;
+}
+
+.tech-panel-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #0074b7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.tech-cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.tech-card {
+    background: white;
+    border: 2px solid #f5a9c8;
+    border-radius: $radius-md;
+    padding: 0.6rem 0.75rem;
+    text-align: center;
+    min-width: 80px;
+    flex: 1 1 80px;
+    max-width: 120px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    transition: transform 0.15s;
+
+    &:hover { transform: translateY(-2px); }
+}
+
+.tech-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f5a9c8, #e91e8c);
+    color: white;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.3rem;
+}
+
+.tech-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.2;
+}
+
+.tech-meta {
+    font-size: 0.65rem;
+    color: #999;
+    margin-top: 0.15rem;
+}
+
+// ============================================
+// FILTER BAR
+// ============================================
+.filter-bar {
+    background: white;
+    border-radius: $radius-sm;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+// ============================================
+// TICKETS SECTION TITLE
+// ============================================
+.tickets-section-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #495057;
+    padding: 0.4rem 0.6rem;
+    background: white;
+    border-radius: $radius-sm;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+}
+
+.tickets-count {
+    margin-left: 0.4rem;
+    font-size: 0.8rem;
+    color: #adb5bd;
+    font-weight: 400;
+}
+
+// ============================================
+// TICKET CARD (wireframe design)
+// ============================================
+.ticket-card {
+    border: 1px solid #e4e8ed;
+    border-radius: $radius-md !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.15s, box-shadow 0.15s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.11);
+    }
+}
+
+// Creator & Type mini-tags
+.tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+
+.tag-creator {
+    background: #e8f4fd;
+    color: #0a6ebd;
+    border: 1px solid #b8d9f5;
+}
+
+.tag-tipo {
+    background: #f3f3f3;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+.tag-tech {
+    background: #e6f9f0;
+    color: #198754;
+    border: 1px solid #b2e4cc;
+}
+
+.tag-notech {
+    background: #f5f5f5;
+    color: #999;
+    border: 1px solid #e0e0e0;
+}
+
+// Subject block
+.ticket-asunto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+.ticket-asunto-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #adb5bd;
+    text-transform: uppercase;
+}
+
+.ticket-asunto-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+// Estado badge
+.estado-badge {
+    display: inline-block;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+// Description
+.ticket-descripcion {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #6c757d !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// Action buttons
+.btn-ticket-edit {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffe69c;
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    &:hover { background: #ffc107; color: #fff; border-color: #ffc107; }
+}
+
+.btn-ticket-delete {
+    background: #f8d7da;
+    color: #842029;
+    border: 1px solid #f1aeb5;
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    &:hover { background: #dc3545; color: #fff; border-color: #dc3545; }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+@media (max-width: 576px) {
+    .tech-card { max-width: 90px; }
+    .tag { max-width: 120px; font-size: 0.65rem; }
+}

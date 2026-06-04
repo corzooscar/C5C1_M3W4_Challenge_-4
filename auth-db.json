@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin1",
+      "password": "admin123",
+      "name": "Administrador Principal",
+      "roleId": 1,
+      "rol": "admin"
+    },
+    {
+      "id": 2,
+      "username": "tec1",
+      "password": "tec123",
+      "name": "Juan Técnico",
+      "roleId": 2,
+      "rol": "tecnico"
+    },
+    {
+      "id": 3,
+      "username": "tec2",
+      "password": "tec456",
+      "name": "María Técnica",
+      "roleId": 2,
+      "rol": "tecnico"
+    },
+    {
+      "username": "jcarlos",
+      "password": "1234",
+      "name": "Juan Carlos",
+      "roleId": 3,
+      "rol": "cliente",
+      "id": 4
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "name": "admin"
+    },
+    {
+      "id": 2,
+      "name": "tecnico"
+    },
+    {
+      "id": 3,
+      "name": "cliente"
+    }
+  ]
+}

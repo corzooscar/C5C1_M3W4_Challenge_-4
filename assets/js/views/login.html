@@ -1,0 +1,58 @@
+<div class="login-card bg-white">
+    <div class="row g-0">
+        <!-- Image Panel -->
+        <div class="col-lg-5 d-none d-lg-flex login-image-panel">
+            <div class="text-center">
+                <div class="brand-icon"><i class="bi bi-ticket-detailed-fill"></i></div>
+                <h2 class="fw-bold mb-2">TMS</h2>
+                <p class="text-light opacity-75">Sistema de Gestión<br>de Tickets de Soporte</p>
+                <hr class="border-light opacity-25 my-3">
+                <p class="small opacity-50">Incidentes · Requerimientos · Soporte</p>
+            </div>
+        </div>
+        <!-- Form Panel -->
+        <div class="col-lg-7 p-5">
+            <div class="d-lg-none text-center mb-4">
+                <i class="bi bi-ticket-detailed-fill text-danger fs-1"></i>
+                <h3 class="fw-bold">TMS</h3>
+            </div>
+            <h4 class="fw-bold mb-1">Bienvenido de nuevo</h4>
+            <p class="text-muted small mb-4">Ingresa tus credenciales para continuar</p>
+
+            <div id="loginAlert" class="alert alert-danger d-none" role="alert"></div>
+
+            <form id="loginForm" novalidate>
+                <div class="mb-3">
+                    <label for="username" class="form-label fw-semibold">Usuario</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" id="username"
+                            placeholder="Ingresa tu usuario" required autocomplete="username">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label fw-semibold">Contraseña</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" id="password"
+                            placeholder="Ingresa tu contraseña" required autocomplete="current-password">
+                    </div>
+                </div>
+                <div class="d-grid mb-3">
+                    <button type="submit" id="loginBtn" class="btn btn-danger btn-lg rounded-pill fw-semibold">
+                        <span id="loginSpinner" class="spinner-border spinner-border-sm me-2 d-none"></span>
+                        Iniciar Sesión
+                    </button>
+                </div>
+            </form>
+
+            <hr>
+            <p class="text-center text-muted small mb-0">
+                ¿No tienes cuenta?
+                <a href="#" id="goToRegister" class="text-danger fw-semibold text-decoration-none">
+                    Regístrate aquí
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

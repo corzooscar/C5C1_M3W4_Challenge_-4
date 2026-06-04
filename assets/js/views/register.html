@@ -1,0 +1,60 @@
+<div class="login-card bg-white">
+    <div class="row g-0">
+        <!-- Image Panel -->
+        <div class="col-lg-5 d-none d-lg-flex login-image-panel">
+            <div class="text-center">
+                <div class="brand-icon"><i class="bi bi-person-plus-fill"></i></div>
+                <h2 class="fw-bold mb-2">Nuevo Cliente</h2>
+                <p class="text-light opacity-75">Crea tu cuenta y empieza<br>a gestionar tus tickets</p>
+            </div>
+        </div>
+        <!-- Form Panel -->
+        <div class="col-lg-7 p-5">
+            <h4 class="fw-bold mb-1">Crear cuenta</h4>
+            <p class="text-muted small mb-4">Completa los datos para registrarte como cliente</p>
+
+            <div id="registerAlert" class="alert d-none" role="alert"></div>
+
+            <form id="registerForm" novalidate>
+                <div class="mb-3">
+                    <label for="regName" class="form-label fw-semibold">Nombre completo</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                        <input type="text" class="form-control" id="regName"
+                            placeholder="Tu nombre completo" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="regUsername" class="form-label fw-semibold">Usuario</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-at"></i></span>
+                        <input type="text" class="form-control" id="regUsername"
+                            placeholder="Nombre de usuario único" required>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="regPassword" class="form-label fw-semibold">Contraseña</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" id="regPassword"
+                            placeholder="Mínimo 4 caracteres" required minlength="4">
+                    </div>
+                </div>
+                <div class="d-grid mb-3">
+                    <button type="submit" id="registerBtn" class="btn btn-success btn-lg rounded-pill fw-semibold">
+                        <span id="registerSpinner" class="spinner-border spinner-border-sm me-2 d-none"></span>
+                        <i class="bi bi-check-circle me-1"></i>Registrarme
+                    </button>
+                </div>
+            </form>
+
+            <hr>
+            <p class="text-center text-muted small mb-0">
+                ¿Ya tienes cuenta?
+                <a href="#" id="goToLogin" class="text-danger fw-semibold text-decoration-none">
+                    Inicia sesión
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
